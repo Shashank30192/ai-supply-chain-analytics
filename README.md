@@ -29,7 +29,6 @@ order reliability before scaling operations.
 - On-Time In-Full (OTIF)
 - Line Fill Rate
 - Volume Fill Rate
-- Order Reliability
 - Customer & Region Performance
 
 ## Status
