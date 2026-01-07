@@ -1,35 +1,52 @@
-# AI-Driven Supply Chain Analytics Platform
+# End-to-End Supply Chain Analytics & Automation Pipeline
 
 ## Overview
-This project demonstrates an end-to-end AI-enabled analytics pipeline designed
-to solve real-world supply chain fulfillment and inventory performance issues.
+This project simulates a real-world supply chain analytics system where daily sales data is received via email, automatically ingested using n8n, stored in PostgreSQL, transformed into an analytics-ready fact table, and used to calculate critical KPIs such as OTIF, line fill rate, and reliability.
 
-The solution automates data ingestion, storage, and analytics while ensuring
-business-level validation of AI-generated insights.
+The project demonstrates end-to-end data engineering, analytics engineering, and supply chain domain understanding.
 
-## Problem Statement
-Supermarket customers experienced dissatisfaction due to delayed deliveries
-and incomplete order fulfillment. Leadership required deeper visibility into
-order reliability before scaling operations.
+## Architecture
+![Architecture Diagram](architecture/architecture-diagram.png)
 
-## Solution Summary
-- Automated data ingestion from emails
-- Centralized storage using PostgreSQL
-- AI-assisted analytics for supply chain KPIs
-- Business validation of AI-generated insights
+**Flow:**
+Email (Vendors) → n8n Automation → PostgreSQL (Supabase) → Analytics Layer → KPI Dashboard
 
 ## Tech Stack
-- Workflow Automation: n8n
-- Database: PostgreSQL (Supabase)
-- Analytics: AI-powered spreadsheets (Quadratic)
-- Language: Python, SQL
-- Domain: Supply Chain Analytics
+- n8n (Workflow Automation)
+- PostgreSQL (Supabase)
+- Python, Pandas
+- SQL
+- Quadratic (AI-assisted analytics)
+- Gmail API
 
-## Key KPIs
-- On-Time In-Full (OTIF)
-- Line Fill Rate
-- Volume Fill Rate
-- Customer & Region Performance
+## Data Pipeline Flow
+- Vendor sends daily sales CSV files via email  
+- n8n Gmail trigger monitors inbox and extracts attachments  
+- CSV data is parsed, validated, and transformed  
+- Cleaned data is loaded into PostgreSQL fact tables  
+- Data is merged into a denormalized `fact_summary` table  
+- KPIs are calculated and visualized  
 
-## Status
-🚧 Project Scope is defined
+## KPIs Implemented
+- Total Orders  
+- Line Fill Rate  
+- Volume Fill Rate  
+- On-Time Delivery % (order level)  
+- In-Full Delivery % (order level)  
+- **OTIF (On-Time In-Full) % – order level**
+
+## Key Challenges & Learnings
+- Debugged date format issues during ingestion (DD-MM-YYYY to ISO format)
+- Corrected AI-generated KPI aggregation errors (line-level vs order-level)
+- Implemented strict order-level OTIF logic to match real supply chain practice
+- Built idempotent email ingestion using Gmail labels to avoid duplication
+
+## Sample Insights
+- Identified customers with high revenue but low OTIF
+- Detected cities with declining on-time performance
+- Observed service reliability gaps across regions
+
+## Future Improvements
+- Add Power BI / Tableau dashboard
+- Implement real-time ingestion
+- Add alerting for low OTIF performance
