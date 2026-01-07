@@ -6,7 +6,7 @@ This project simulates a real-world supply chain analytics system where daily sa
 The project demonstrates end-to-end data engineering, analytics engineering, and supply chain domain understanding.
 
 ## Architecture
-![Architecture Diagram](architecture/architecture-diagram.png)
+architecture_diagram.drawio.png
 
 **Flow:**
 Email (Vendors) → n8n Automation → PostgreSQL (Supabase) → Analytics Layer → KPI Dashboard
