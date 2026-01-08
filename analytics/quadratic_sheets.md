@@ -1,0 +1,128 @@
+   Quadratic Sheets Documentation
+
+This document explains each sheet created in Quadratic and its purpose in the analytics workflow.
+
+The Quadratic spreadsheet acts as the **analytics layer** on top of PostgreSQL.
+
+   
+
+   1. dim_customers Sheet
+
+**Source:** PostgreSQL – dim_customers table  
+**Purpose:**  
+Contains customer master data including customer name, city, and country.  
+Used to enrich fact data for customer-level analysis.
+
+   
+
+   2. dim_products Sheet
+
+**Source:** PostgreSQL – dim_products table  
+**Purpose:**  
+Contains product master data including product name and category.  
+Used for product-level and category-level analysis.
+
+   
+
+   3. dim_target_orders Sheet
+
+**Source:** PostgreSQL – dim_target_orders table  
+**Purpose:**  
+Stores target order values per customer.  
+Used to compare actual performance vs targets.
+
+   
+
+   4. fact_orders_aggregate Sheet
+
+**Source:** PostgreSQL – fact_orders_aggregate table  
+**Purpose:**  
+Contains order-level data such as order date, city, country, and total order value.  
+Acts as the base for order-level KPIs.
+
+   
+
+   5. fact_order_lines Sheet
+
+**Source:** PostgreSQL – fact_order_lines table  
+**Purpose:**  
+Contains line-item level data such as product, order quantity, delivery quantity, on_time and in_full flags.  
+Used to compute line fill rate, volume fill rate, and OTIF.
+
+   
+
+   6. dim_date Sheet
+
+**Source:** AI-generated inside Quadratic (Python code)  
+**Purpose:**  
+Contains continuous date range with year, month, week, and day attributes.  
+Used for time-based analysis and monthly trends.
+
+   
+
+   7. exchange_rate Sheet
+
+**Source:** OpenExchangeRates API via AI-generated Python code  
+**Purpose:**  
+Stores USD to INR exchange rates by date.  
+Used to normalize order values across countries.
+
+   
+
+   8. fact_summary Sheet
+
+**Source:** AI-generated inside Quadratic (merged data)  
+**Purpose:**  
+Denormalized table created by merging:
+- fact_orders_aggregate  
+- fact_order_lines  
+- dim_customers  
+- dim_products  
+- dim_target_orders  
+- exchange_rate  
+
+This is the **primary analytics table** used for all KPI calculations and business insights.
+
+   
+
+   9. kpi_summary Sheet
+
+**Source:** AI-generated inside Quadratic  
+**Purpose:**  
+Contains calculated KPIs:
+- Total Orders  
+- Total Order Lines  
+- Line Fill Rate  
+- Volume Fill Rate  
+- On-Time Delivery % (order level)  
+- In-Full Delivery % (order level)  
+- OTIF % (order level)
+
+This sheet is used for dashboard and reporting.
+
+   
+
+   10. business_insights Sheet
+
+**Source:** AI-generated using prompts  
+**Purpose:**  
+Contains:
+- Top customers by revenue with OTIF  
+- City-wise performance  
+- Monthly trends  
+- Key problem areas  
+- Business recommendations
+
+This sheet supports decision-making and stakeholder reporting.
+
+   
+
+   Why Quadratic Was Used
+
+Quadratic was used as an AI-assisted analytics layer to:
+- Rapidly explore data using natural language prompts
+- Generate Python code automatically for transformations
+- Create KPIs and insights faster than traditional BI tools
+- Validate business logic interactively
+
+This enabled faster iteration while maintaining full control over logic and validation.
