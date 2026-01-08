@@ -41,10 +41,6 @@ Email (Vendors) → n8n Automation → PostgreSQL (Supabase) → Analytics Layer
 - Implemented strict order-level OTIF logic to match real supply chain practice
 - Built idempotent email ingestion using Gmail labels to avoid duplication
 
-## Sample Insights
-- Identified customers with high revenue but low OTIF
-- Detected cities with declining on-time performance
-- Observed service reliability gaps across regions
 
 ## Future Improvements
 - Add Power BI / Tableau dashboard
