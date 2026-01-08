@@ -45,6 +45,14 @@ Acts as the base for order-level KPIs.
 Contains line-item level data such as product, order quantity, delivery quantity, on_time and in_full flags.  
 Used to compute line fill rate, volume fill rate, and OTIF.
 
+AI Prompts
+This folder contains prompts used for AI-assisted analytics and data preparation.
+
+Planned contents:
+
+Date table prompt
+Exchange rate prompt
+KPI generation prompts
 
 ## 6. dim_date Sheet
 
