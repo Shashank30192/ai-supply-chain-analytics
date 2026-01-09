@@ -15,7 +15,7 @@ Email (Vendors) → n8n Automation → PostgreSQL (Supabase) → Analytics Layer
 
 ### Workflow Automation
 - **n8n** – Used to build automated workflows for monitoring Gmail inbox, extracting CSV attachments, transforming data, and loading data into PostgreSQL. Enabled end-to-end automation without manual intervention.
-
+n8n (Self-hosted Server) – Used to automate email monitoring, CSV extraction, data transformation, and ingestion into PostgreSQL.
 ---
 
 ### Database
